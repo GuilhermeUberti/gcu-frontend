@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import { CidadeService } from '../../services/domain/cidade.service';
 import { EstadoService } from '../../services/domain/estado.service ';
 import { EstadoDTO } from '../../models/estado.dto';
@@ -17,6 +17,11 @@ export class SignutPage {
   estados : EstadoDTO[];
   cidades : CidadeDTO[];
 
+  data = {
+    senha : '',
+    confirmarSenha : ''
+  }
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -25,11 +30,11 @@ export class SignutPage {
     public estadoService : EstadoService
     ) {
 
-      this.formGroup = this.formBuilder.group({
+      this.formGroup = this.formBuilder.group({     
         nome : ['', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
         email : ['', [Validators.required, Validators.email]],
         tipo : ['', Validators.required],
-        cpfOuCnpj : ['', Validators.required, Validators.minLength(11), Validators.maxLength(14)],
+        cpfOuCnpj : ['', [Validators.required, Validators.minLength(11), Validators.maxLength(14)]],
         senha : ['', Validators.required],
         logradouro : ['', Validators.required],
         numero : ['', Validators.required],
@@ -40,9 +45,9 @@ export class SignutPage {
         telefone2 : ['', []],
         telefone3 : ['', []],
         estadoId : [null, Validators.required],
-        cidadeId : [null, Validators.required],
+        cidadeId : [null, Validators.required]        
       });
-  }
+    }
 
   ionViewDidLoad() {
     this.estadoService.findAll()
@@ -65,6 +70,6 @@ export class SignutPage {
   }
 
   signupUser() {
-    console.log('Enviou o Cadastro com Sucesso!')
+    console.log('Cadastro enviado com Sucesso!')
   }
 }
