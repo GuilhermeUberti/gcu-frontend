@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EnderecoDTO } from '../../models/endereco.dto';
+import { StorageService } from '../../services/storage.service';
+import { ClienteService } from '../../services/domain/cliente.service';
 
 @IonicPage()
 @Component({
@@ -11,43 +13,28 @@ export class PickAddressPage {
 
   items : EnderecoDTO[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public storage : StorageService,
+    public clienteService : ClienteService) {
   }
 
   ionViewDidLoad() {
-    this.items = [
-      {
-        id : "1",
-        logradouro : "Rua Jéssia Ribeiro",
-        numero : "233",
-        complemento : "Apto 301",
-        bairro : "Santa Mônica",
-        cep : "88037145",
-        cidade : {
-          id : "1",
-          nome : "Uberlândia",
-          estado : {
-            id : "1",
-            nome : "Minas Gerais"
+    let localUser = this.storage.getLocalUser();
+    if (localUser && localUser.email) {
+      this.clienteService.findByEmail(localUser.email)
+        .subscribe(response => {
+          this.items = response['enderecos'];
+        },
+        error => {
+          if(error.status == 403) {
+            this.navCtrl.setRoot('HomePage');
           }
-        }
-      },
-      {
-        id : "2",
-        logradouro : "Rua Izabela Ribeiro",
-        numero : "1282",
-        complemento : "Casa",
-        bairro : "Santa Rabetinha",
-        cep : "88030100",
-        cidade : {
-          id : "3",
-          nome : "São Paulo",
-          estado : {
-            id : "2",
-            nome : "São Paulo"
-          }
-        }
-      }      
-    ];
+        });
+    }
+    else {
+      this.navCtrl.setRoot('HomePage');
+    }
   }
 }
