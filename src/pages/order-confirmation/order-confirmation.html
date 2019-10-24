@@ -77,11 +77,11 @@
   <div *ngIf="codpedido">
     <ion-card>
       <ion-card-header>
-        Compra efetuada com sucesso!
+        <h3 text-center>Compra efetuada com sucesso!</h3>
       </ion-card-header>
       <ion-item>
-        <h2>Códido do Pedido : {{codpedido}}</h2>
-        <p style="color: forestgreen;">Verifique seu E-mail</p>
+        <h2 text-center>Códido do Pedido : <strong>{{codpedido}}</strong></h2>
+        <p style="color: red;" text-center><strong>Verifique seu E-mail</strong></p>
       </ion-item>
     </ion-card>
     <button ion-button block outline (click)="home()">Voltar</button>
