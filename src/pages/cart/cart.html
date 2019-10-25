@@ -31,3 +31,24 @@
     <button ion-button block (click)="goOn()">Continuar comprando</button>
     <button *ngIf="total() > 0" ion-button color="secondary" block (click)="checkout()">Finalizar pedido</button>
   </ion-content>
+
+  <ion-footer>
+      <ion-toolbar>
+          <ion-buttons class="botoes-rodape">
+            <div class="div-botoes">
+              <button ion-button block outline navPush="CategoriasPage" style="height: 45px;">
+                <ion-icon name="list-box" style="width: 60px;"></ion-icon>
+              </button>
+              <button ion-button block outline navPush="ProfilePage" style="height: 45px;">
+                <ion-icon name="md-contact" style="width: 60px;"></ion-icon>
+              </button>
+              <button ion-button block outline navPush="CartPage" style="height: 45px;">
+                <ion-icon name="ios-basket-outline" style="width: 60px;"></ion-icon>
+              </button>
+              <button ion-button block outline navPush="SocialPage" style="height: 45px;">
+                <ion-icon name="heart" style="width: 60px;"></ion-icon>
+              </button>                           
+            </div>            
+            </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>

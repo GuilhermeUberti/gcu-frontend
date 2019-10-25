@@ -53,18 +53,4 @@ export class ProfilePage {
       },
       error => {});
   }
-
-  sendPicture() {
-    this.clienteService.uploadPicture(this.picture)
-      .subscribe(response => {
-        this.picture = null;
-        this.loadData();
-      },
-      error => {
-      });
-  }
-
-  cancel() {
-    this.picture = null;
-  }
 }

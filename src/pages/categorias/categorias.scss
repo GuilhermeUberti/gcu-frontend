@@ -23,7 +23,7 @@ ion-content {
 }
 
 .botoes-rodape {
-    background-color: cadetblue;
+    background-color: black;
     text-align: center;
 }
 
@@ -33,6 +33,13 @@ ion-content {
 
 .botao-carrinho {
     background-color: cadetblue;
+    opacity: 0.8;
 }
+
+footer {
+    opacity: 0.1;
+    background: cadetblue;
+}
+
 
 

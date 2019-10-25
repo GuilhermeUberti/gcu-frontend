@@ -32,3 +32,5 @@ export class CategoriasPage {
     this.navCtrl.push('ProdutosPage', {categoria_id : categoria_id});
   }
 }
+
+
