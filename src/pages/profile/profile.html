@@ -13,4 +13,15 @@
   </ion-avatar>
   <h2 text-center>{{cliente?.nome}}</h2>
   <p text-center>{{cliente?.email}}</p>
+
+  <ion-card>
+    <ion-card-header>
+      <p text-center>Enviar imagem do perfil</p>
+    </ion-card-header>
+    <ion-item>
+      <button ion-button block disabled (click)="sendPicture()">Enviar imagem</button>
+      <button ion-button outline block (click)="cancel()">Descartar imagem</button>
+    </ion-item>
+  </ion-card>
+
 </ion-content>

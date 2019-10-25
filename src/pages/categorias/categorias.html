@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar class="custom-header">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,16 +7,37 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content fullscreen class="container">
   <ion-fab top right edge>
-    <button navPush="CartPage" ion-fab mini><ion-icon name="cart"></ion-icon></button>
+    <button navPush="CartPage" ion-fab mini class="botao-carrinho"><ion-icon name="ios-basket-outline" 
+      class="icone-carrinho"></ion-icon></button>
   </ion-fab>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="showProdutos(item.id)">
-      <ion-thumbnail item-start>
-        <img src="{{bucketUrl}}/cat{{item.id}}.png"> 
-      </ion-thumbnail>
-      <h2> {{ item.nome }} </h2>
-    </button>
-  </ion-list>
+  <ion-searchbar value="Ionic" placeholder="digite aqui pra buscar"></ion-searchbar>
+  <ion-toolbar color="dark" *ngFor="let item of items" (click)="showProdutos(item.id)">
+    <img class="img-categoria" src="{{bucketUrl}}/cat{{item.id}}.png">
+    <ion-label class="text" text-center>{{ item.nome }}</ion-label>    
+  </ion-toolbar>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+      <ion-buttons class="botoes-rodape">
+        <div class="div-botoes">
+          <button ion-button block outline navPush="CategoriasPage">
+            <ion-icon name="reorder" style="width: 60px;"></ion-icon>
+          </button>
+          <button ion-button block outline>
+              <ion-icon name="md-home" style="width: 60px;"></ion-icon>
+          </button>
+          <button ion-button block outline>
+              <ion-icon ios="ios-basket-outline" style="width: 60px;"></ion-icon>
+          </button>
+          <button ion-button block outline navPush="ProfilePage">
+              <ion-icon name="md-contact" style="width: 60px;"></ion-icon>
+          </button>        
+        </div>            
+        </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+

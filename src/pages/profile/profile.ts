@@ -13,6 +13,7 @@ import { API_CONFIG } from '../../config/api.config';
 export class ProfilePage {
 
   cliente : ClienteDTO;
+  picture : string;
 
   constructor(
      public navCtrl: NavController,
@@ -22,6 +23,10 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData(){
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       this.clienteService.findByEmail(localUser.email)
@@ -39,6 +44,7 @@ export class ProfilePage {
       this.navCtrl.setRoot('HomePage');
     }
   }
+  
 
   getImageIfExists() {
     this.clienteService.getImageFromBucket(this.cliente.id)
@@ -46,5 +52,19 @@ export class ProfilePage {
         this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.png`;
       },
       error => {});
-  }  
+  }
+
+  sendPicture() {
+    this.clienteService.uploadPicture(this.picture)
+      .subscribe(response => {
+        this.picture = null;
+        this.loadData();
+      },
+      error => {
+      });
+  }
+
+  cancel() {
+    this.picture = null;
+  }
 }

@@ -1,3 +1,38 @@
-page-categorias {
-
+.img-categoria {
+    width: 100%;
+    height: 150px;
+    opacity: 0.5;
 }
+
+.container {
+    background-color: black;
+    color: blanchedalmond;
+    background: black;
+    border: none;
+}
+
+.text {
+    position: absolute;
+    top: 55px;
+    font-size: 20px;
+    width: 100%;
+}
+
+ion-content {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.botoes-rodape {
+    background-color: cadetblue;
+    text-align: center;
+}
+
+.icone-carrinho {
+    background-color: cadetblue;
+}
+
+.botao-carrinho {
+    background-color: cadetblue;
+}
+
+
